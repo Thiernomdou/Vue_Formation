@@ -1,7 +1,10 @@
 <template>
-    <ul class="liste">
-        <li v-for="(fruit, index) in fruits" v-bind:key="index">{{ fruit }}</li>
-    </ul>
+    <div>   
+        <ul class="liste">
+            <li v-for="(fruit, index) in fruits" v-bind:key="index">{{ fruit }}</li>
+        </ul>
+        <p>{{ prenom }}</p>
+    </div>
 </template>
 
 <script>
@@ -11,7 +14,8 @@
             return {
                 fruits : ["Tomate", "Papaye", "Mangue"]
             }
-        }
+        },
+        props: ["prenom"]
     }
 </script>
 
