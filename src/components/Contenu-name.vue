@@ -15,7 +15,9 @@ export default {
     data() {
         return {
             txt : 'Je suis le contenu',
-            prenom: "Thierno"
+            prenom: {
+                nom: "Thierno"
+            }
         }
     },
     components: {
