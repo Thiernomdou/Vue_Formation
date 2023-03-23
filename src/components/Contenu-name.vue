@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="container mt-5">
         <p>{{ txt }}</p>
         <liste v-bind:prenom="prenom"></liste>
     </div>
