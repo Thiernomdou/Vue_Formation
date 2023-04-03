@@ -1,7 +1,10 @@
 <template>
     <div class="container mt-5">
-        <p>{{ txt }}</p>
-        <liste v-bind:prenom="prenom"></liste>
+
+        <h1>{{ titre }}</h1>
+
+        <liste v-bind:myArr="myArr" :txt="txt" v-on:changeTitre="changementTitre($event)"></liste>
+
     </div>
     
 </template>
@@ -14,10 +17,18 @@ export default {
     name: 'Contenu-name',
     data() {
         return {
-            txt : 'Je suis le contenu',
-            prenom: {
-                nom: "Thierno"
-            }
+            myArr: [
+                {titre: 'Inception', date: 2010},
+                {titre: 'Avatar', date: 2009},
+                {titre: 'Seven', date: 1995}
+            ],
+            txt: 'Hello World',
+            titre: 'Je suis le Titre'
+        }
+    },
+    methods: {
+        changementTitre: function(nvTitre) {
+            this.titre = nvTitre;
         }
     },
     components: {

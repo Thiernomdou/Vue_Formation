@@ -1,9 +1,20 @@
 <template>
     <div>   
-        <ul class="liste">
-            <li v-for="(fruit, index) in fruits" v-bind:key="index">{{ fruit }}</li>
+        <ul class="liste mt-5">
+            <li v-for="(film, index) in myArr" v-bind:key="index">
+                <div class="card">
+                    <div class="card-body">
+                        Titre: {{ film.titre }}
+                        <br>
+                        Date:  {{ film.date }}
+                    </div>
+                </div>
+            </li>
         </ul>
-        <p>{{ prenom.nom }}</p>
+        <p>{{ txt }}</p>
+        <div @click="supprFilm" class="btn btn-danger mt-2">Supprimer le film</div>
+        <div @click="supprTxt" class="btn btn-danger mt-2 ml-2">Supprimer le texte</div>
+        <div @click="changeTitre" class="btn btn-danger mt-2 ml-2">Modifie le Titre</div>
 
     </div>
 </template>
@@ -16,11 +27,19 @@
                 fruits : ["Tomate", "Papaye", "Mangue"]
             }
         },
-        props: {
-            prenom: {
-                type: Object
+        methods: {
+            supprFilm: function() {
+                this.myArr 
+            },
+            supprTxt: function() {
+                this.txt
+            },
+            changeTitre: function() {
+                //le nom de l'évènement que le parent peut écouter en premier paramètre le l'emit et le second est ce qu'on a envie de lui passer
+                this.$emit('changeTitre', 'Mon nouveau Titre')
             }
-        }
+        },
+        props: ['myArr', 'txt']
     }
 </script>
 
