@@ -3,7 +3,13 @@
 
         <h1>{{ titre }}</h1>
 
-        <liste v-bind:myArr="myArr" :txt="txt" v-on:changeTitre="changementTitre($event)"></liste>
+        <liste v-bind:myArr="myArr" :txt="txt" v-on:changeTitre="changementTitre($event)">
+            <template v-slot:info>
+                <h1>Le contenu du slot nommé</h1>
+            </template>
+        </liste>
+
+        
 
     </div>
     

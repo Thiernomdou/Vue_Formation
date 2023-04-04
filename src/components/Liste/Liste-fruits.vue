@@ -16,6 +16,8 @@
         <div @click="supprTxt" class="btn btn-danger mt-2 ml-2">Supprimer le texte</div>
         <div @click="changeTitre" class="btn btn-danger mt-2 ml-2">Modifie le Titre</div>
 
+        <slot name="info"></slot>
+
     </div>
 </template>
 
