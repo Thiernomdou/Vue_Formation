@@ -37,3 +37,11 @@ export default {
 }
 
 </script>
+
+<style>
+
+h1 {
+    margin-top: 100px!important;
+}
+
+</style>
