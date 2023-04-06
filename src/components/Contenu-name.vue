@@ -3,21 +3,22 @@
 
         <h1>{{ titre }}</h1>
 
-        <liste v-bind:myArr="myArr" :txt="txt" v-on:changeTitre="changementTitre($event)">
-            <template v-slot:info>
-                <h1>Le contenu du slot nommé</h1>
-            </template>
-        </liste>
+        <div class="btn btn-outline-primary mr-2 mb-5" @click="toggleOnglet1">Onglet 1</div>
+        <div class="btn btn-outline-primary mb-5" @click="toggleOnglet2">Onglet 2</div>
 
-        
-
+        <div class="card onglets mb-5">
+            <texte-1 class="p-5" v-if="toggle1"></texte-1>
+            <texte-2 class="p-5" v-if="toggle2"></texte-2>
+        </div>
     </div>
     
 </template>
 
 
 <script>
-import Liste from './Liste/Liste-fruits.vue'
+
+import Texte1 from './Texte-1.vue'
+import Texte2 from './Texte-2.vue'
 
 export default {
     name: 'Contenu-name',
@@ -29,16 +30,27 @@ export default {
                 {titre: 'Seven', date: 1995}
             ],
             txt: 'Hello World',
-            titre: 'Je suis le Titre'
+            titre: 'Je suis le Titre',
+            toggle1: true,
+            toggle2: false
         }
     },
     methods: {
         changementTitre: function(nvTitre) {
             this.titre = nvTitre;
+        },
+        toggleOnglet1: function() {
+            this.toggle1 = true;
+            this.toggle2 = false
+        },
+        toggleOnglet2: function() {
+            this.toggle1 = false;
+            this.toggle2 = true;
         }
     },
     components: {
-        'liste': Liste
+        'texte-1': Texte1,
+        'texte-2': Texte2
     }
 }
 
@@ -48,6 +60,11 @@ export default {
 
 h1 {
     margin-top: 100px!important;
+}
+
+.onglets {
+    height: 250px;
+
 }
 
 </style>
