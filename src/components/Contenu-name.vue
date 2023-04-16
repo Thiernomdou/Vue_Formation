@@ -10,6 +10,12 @@
             <texte-1 class="p-5" v-if="toggle1"></texte-1>
             <texte-2 class="p-5" v-if="toggle2"></texte-2>
         </div>
+
+
+        <modale-text v-bind:revele="revele" v-bind:toggleModale="toggleModale"></modale-text>
+        <div @click="toggleModale" class="btn btn-success">Ouvre la modale</div>
+
+
     </div>
     
 </template>
@@ -19,6 +25,7 @@
 
 import Texte1 from './Texte-1.vue'
 import Texte2 from './Texte-2.vue'
+import Modale from './Modal-text.vue'
 
 export default {
     name: 'Contenu-name',
@@ -32,7 +39,8 @@ export default {
             txt: 'Hello World',
             titre: 'Je suis le Titre',
             toggle1: true,
-            toggle2: false
+            toggle2: false,
+            revele: false
         }
     },
     methods: {
@@ -46,11 +54,15 @@ export default {
         toggleOnglet2: function() {
             this.toggle1 = false;
             this.toggle2 = true;
+        },
+        toggleModale: function() {
+            this.revele = !this.revele;
         }
     },
     components: {
         'texte-1': Texte1,
-        'texte-2': Texte2
+        'texte-2': Texte2,
+        'modale-text': Modale
     }
 }
 
