@@ -11,26 +11,8 @@ export default {
     name: 'Header-top',
     data() {
         return {
-            titre: 'Mon titre de base'
+            titre: 'Acceuil'
         }
-    },
-    beforeCreate() {
-        console.log("Il va être crée");
-    },
-    created() {
-        console.log("Le composant est crée");
-    },
-    beforeMount() {
-        console.log("Il va être monté dans le DOM");
-    },
-    mounted() {
-        console.log("Il est monté dans le DOM");
-    },
-    beforeUpdate() {
-        console.log("Il va se mettre à jour");
-    },
-    updated() {
-        console.log("Le composant s'est mis à jour");
     }
 }
 
