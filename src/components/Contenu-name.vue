@@ -1,33 +1,50 @@
 <template>
 
     <div class="container mt-5">
-        <h1>Appel à une API</h1>
-        <img v-bind:src="urlImg" alt="">
+        <h1>Notre premier Formulaire</h1>
+       
+       
+        <form>
+
+            <div class="form-group">
+                <label for="prenom">Ton prénom</label>
+                <input v-model="formData.prenom" type="text" id="prenom" class="form-control">
+            </div>
+
+            <div class="form-group">
+                <label for="txt">Ton texte</label>
+                <textarea v-model="formData.txt" id="txt" class="form-control"></textarea>
+            </div>
+
+            <h2>Résultats</h2>
+
+            <div class="card p-3">
+                <p>Prenom : {{ formData.prenom }}</p>
+                <p style="white-space:pre">Texte : {{ formData.txt }}</p>
+            </div>
+
+        </form>
+
+
     </div>
     
 </template>
 
 
 <script>
-import axios from 'axios'
 
 export default {
     name: 'Contenu-name',
     data() {
         return {
-            urlImg: null
+            formData: {
+                prenom: '',
+                txt: ''
+            }
         }
     },
     methods: {
         
-    },
-    mounted() {
-        axios
-        .get('https://api.thecatapi.com/v1/images/search')
-        .then(reponse => {
-            console.log(reponse);
-            this.urlImg = reponse.data[0].url
-        })
     }
 }
 
