@@ -7,6 +7,7 @@
         <form>
 
 
+            <!-- input & textarea-->
             <div class="form-group">
                 <label for="prenom">Ton prénom</label>
                 <input v-model="formData.prenom" type="text" id="prenom" class="form-control">
@@ -19,6 +20,15 @@
 
 
 
+            <!-- Selectboxs -->
+            <select  v-model="formData.select" class="mt-3 mb-3">
+                <option v-for="(pays, index) in formData.listePays" :key="index">{{pays}}</option>
+            </select>
+
+
+
+
+            <!-- Checkboxs -->
             <div class="form-check">
                 <input v-model="formData.checkFruits" type="checkbox" id="fraise" value="fraise" class="form-check-input">
                 <label for="fraise">Fraise</label>
@@ -49,6 +59,8 @@
                 <li v-for="(fruit, index) in formData.checkFruits" :key="index">{{fruit}}</li>
             </ul>
 
+            <p>Choix du select : {{formData.select}}</p>
+
         </form>
 
 
@@ -66,7 +78,9 @@ export default {
             formData: {
                 prenom: '',
                 txt: '',
-                checkFruits: []
+                checkFruits: [],
+                select: '',
+                listePays: ['France', 'Guinée', 'Sénégal', 'Canada']
             }
         }
     },
