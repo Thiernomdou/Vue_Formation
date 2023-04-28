@@ -1,101 +1,56 @@
 <template>
 
     <div class="container mt-5">
-        <h1>Notre premier Formulaire</h1>
-       
-       
+
+        <h1>Rentrez vos choses à faire</h1>
+
         <form>
 
-
-            <!-- input & textarea-->
             <div class="form-group">
-                <label for="prenom">Ton prénom</label>
-                <input v-on:input="toggleResult" v-model="formData.prenom" type="text" id="prenom" class="form-control">
+                <label for="action">Action</label>
+                <input v-model="formData.tache" type="text" class="form-control" id="action">
             </div>
-
-            <div class="form-group">
-                <label for="txt">Ton texte</label>
-                <textarea v-on:input="toggleResult" v-model="formData.txt" id="txt" class="form-control"></textarea>
-            </div>
-
-
-
-            <!-- Selectboxs -->
-            <select  v-model="formData.select" class="mt-3 mb-3" v-on:input="toggleResult">
-                <option v-for="(pays, index) in formData.listePays" :key="index">{{pays}}</option>
-            </select>
-
-
-
-
-            <!-- Checkboxs -->
-            <div class="form-check">
-                <input v-model="formData.checkFruits" v-on:input="toggleResult" type="checkbox" id="fraise" value="fraise" class="form-check-input">
-                <label for="fraise">Fraise</label>
-            </div>
-
-            <div class="form-check">
-                <input v-model="formData.checkFruits" v-on:input="toggleResult" type="checkbox" id="pomme" value="pomme" class="form-check-input">
-                <label for="pomme">Pomme</label>
-            </div>
-
-            <div class="form-check">
-                <input v-model="formData.checkFruits" v-on:input="toggleResult" type="checkbox" id="cerises" value="cerises" class="form-check-input">
-                <label for="cerises">Cerises</label>
-            </div>
-
-            <button @click.prevent="envoiForm" class="btn btn-primary mt-3">Envoyez les données</button>
+            <button @click.prevent="creationItem" class="btn btn-primary mt-2 mb-3">Créer une tâche</button>
 
         </form>
 
-        <br>
+        <ul>
+            <li v-for="(tache, index) in tableauTaches" :key="index">
+                <Item-todo :tache="tache" :id="index" :suppression="suppression"></Item-todo>
+            </li>
+        </ul>
 
-        <div v-if="infoSubmit">
-
-            <h2>Résultats</h2>
-
-                <div class="card p-3">
-                    <p>Prenom : {{ formData.prenom }}</p>
-                    <p style="white-space:pre">Texte : {{ formData.txt }}</p>
-                </div>
-
-
-                <p>Résultats checkboxs</p>
-                <ul>
-                    <li v-for="(fruit, index) in formData.checkFruits" :key="index">{{fruit}}</li>
-                </ul>
-
-                <p>Choix du select : {{formData.select}}</p>
-
-
-            </div>
-       </div>
+    </div>
     
 </template>
 
 
 <script>
 
+import ItemTodoVue from './Item-todo.vue'
+
+
 export default {
     name: 'Contenu-name',
+    components: {
+        'Item-todo': ItemTodoVue
+    },
     data() {
         return {
             formData: {
-                prenom: '',
-                txt: '',
-                checkFruits: [],
-                select: '',
-                listePays: ['France', 'Guinée', 'Sénégal', 'Canada']
+                tache: ''
             },
-            infoSubmit: false
+            tableauTaches: ['JavaScript', 'Vue', 'React', 'Angular']
         }
     },
     methods: {
-        envoiForm: function() {
-            this.infoSubmit = true;
+        creationItem: function() {
+            this.tableauTaches.push(this.formData.tache);
+            this.formData.tache = '';
         },
-        toggleResult: function() {
-            this.infoSubmit = false;
+        suppression: function(e) {
+            console.log(e.target.parentNode.id);
+            // this.tableauTaches.splice(e.target.parentNode.id, 1);
         }
     }
 }
@@ -107,10 +62,10 @@ export default {
 h1 {
     margin-top: 100px!important;
 }
-
-.onglets {
-    height: 250px;
-
+ul {
+    list-style-type: none;
+    padding: 0;
 }
+
 
 </style>

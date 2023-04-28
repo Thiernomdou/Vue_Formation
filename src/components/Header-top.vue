@@ -11,7 +11,7 @@ export default {
     name: 'Header-top',
     data() {
         return {
-            titre: 'Acceuil'
+            titre: 'La To-Do Liste'
         }
     }
 }
